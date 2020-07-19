@@ -14,7 +14,7 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 # Clone this repository
 git clone https://github.com/fssonca/electron-printer
 # Go into the repository
-cd electron-quick-start
+cd electron-printer
 # Install dependencies
 npm install
 # Run the app
