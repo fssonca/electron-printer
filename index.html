@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!-- <m eta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+ 	
+   
+	
+    <title>TEST PRINTER</title>
+	
+	
+	<style>
+	body{font-family:sans-serif}
+	
+	</style>
+  </head>
+  <body>
+    <h1>Test printer</h1>
+    Node.js <span id="node-version"></span> - 
+    Chromium <span id="chrome-version"></span> - 
+    Electron <span id="electron-version"></span>.
+	
+	<div>
+	
+	<form name>
+  <p>List of printers:</p>
+  
+  <div id='list_printers'>
+
+  </div>
+
+  <br>  
+
+  <p>Width</p>
+  <input type="radio" id="w1" name="width" value="140px">
+  <label for="w1">140px</label><br>
+  
+  <input type="radio" id="w2" name="width" value="170px">
+  <label for="w2">170px</label><br>
+  
+  <input type="radio" id="w3" name="width" value="200px">
+  <label for="w3">200px</label><br>
+  
+  <input type="radio" id="w4" name="width" value="250px">
+  <label for="w4">250px</label><br>
+  
+  <input type="radio" id="w5" name="width" value="300px">
+  <label for="w5">300px</label><br>
+  
+ 
+</form>
+	
+	</div>
+	
+	<br>
+<input onclick="print()" type="button" value="printer test"/>
+<br>
+<br>
+<br>
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>
