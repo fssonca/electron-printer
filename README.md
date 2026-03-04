@@ -1,32 +1,52 @@
-# PRINTER TEST WITH ELECTRON
- 
-This is a minimal Electron application to printer based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
+# Electron Printer Test
 
-My thanks to [Hubertformin](https://github.com/Hubertformin/electron-pos-printer)
+Electron app for testing standard and thermal printer output.
 
-You can learn more about components electron within the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start).
+Built with:
+- [Electron](https://www.electronjs.org/)
+- [electron-pos-printer](https://github.com/Hubertformin/electron-pos-printer)
 
-## To Use
+## Features
 
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+- Lists installed printers from the host OS
+- Prints a receipt-style sample payload (text, image, QR code, barcode)
+- Supports thermal width presets:
+  - `57mm (215px)`
+  - `58mm (219px)`
+  - `76mm (287px)`
+  - `78mm (295px)`
+  - `80mm (302px)`
+- Fallback preview mode when no printer is selected/available
+
+
+## Run Locally
+
+Requirements:
+- Node.js + npm
 
 ```bash
-# Clone this repository
 git clone https://github.com/fssonca/electron-printer
-# Go into the repository
 cd electron-printer
-# Install dependencies
 npm install
-# Run the app
 npm start
 ```
 
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+## How to Test Without a Physical Printer
 
-## Resources for Learning Electron
+If your environment has no configured printers:
 
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
-- [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
+1. Open the app.
+2. Select a width preset.
+3. Click `Print Test`.
+4. A print preview window opens.
+5. Press `Cmd+P` (macOS) or `Ctrl+P` (Windows/Linux), then choose `Save as PDF`.
+
+## Notes by Platform
+
+- **macOS:** If CUPS has no destinations, preview/PDF mode still works for validation.
+- **Linux:** Ensure CUPS is running and the user has print permissions for real printer tests.
+- **Windows:** Ensure Print Spooler is running and drivers are installed for real printer tests.
+
+## Credits
+
+- [Hubert Formin](https://github.com/Hubertformin) and contributors of `electron-pos-printer`
