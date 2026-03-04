@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;" />
+    <title>Printer Test</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --text: #1f2a37;
+        --muted: #556070;
+        --border: #d5deea;
+        --accent: #0d63a5;
+        --accent-strong: #084f85;
+        --danger: #b02a37;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+        background: radial-gradient(circle at top, #ebf2fa 0%, var(--bg) 48%, #eef4fb 100%);
+        color: var(--text);
+        display: grid;
+        place-items: center;
+        padding: 20px;
+      }
+
+      .app {
+        width: min(640px, 100%);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(24, 39, 75, 0.08);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 1.35rem;
+      }
+
+      .versions {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      fieldset {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin: 0;
+      }
+
+      legend {
+        font-weight: 600;
+        padding: 0 6px;
+      }
+
+      .printer-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .printer-option,
+      .width-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .width-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 14px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        border: 0;
+        border-radius: 9px;
+        padding: 10px 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+      }
+
+      #printBtn {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      #printBtn:hover:enabled {
+        background: var(--accent-strong);
+      }
+
+      #refreshPrintersBtn {
+        background: #e7eef8;
+        color: var(--text);
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      #status {
+        min-height: 1.4em;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      #status[data-error="true"] {
+        color: var(--danger);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <h1>Printer Test</h1>
+      <p class="versions">
+        Node.js <span id="node-version"></span> |
+        Chromium <span id="chrome-version"></span> |
+        Electron <span id="electron-version"></span>
+      </p>
+
+      <form id="printForm" class="grid">
+        <fieldset>
+          <legend>Available Printers</legend>
+          <div id="list_printers" class="printer-list" role="radiogroup" aria-label="Printers"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Page Width</legend>
+          <div class="width-list">
+            <label class="width-option" for="w1"><input type="radio" id="w1" name="width" value="57mm" required />57mm (215px)</label>
+            <label class="width-option" for="w2"><input type="radio" id="w2" name="width" value="58mm" checked />58mm (219px)</label>
+            <label class="width-option" for="w3"><input type="radio" id="w3" name="width" value="76mm" />76mm (287px)</label>
+            <label class="width-option" for="w4"><input type="radio" id="w4" name="width" value="78mm" />78mm (295px)</label>
+            <label class="width-option" for="w5"><input type="radio" id="w5" name="width" value="80mm" />80mm (302px)</label>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button id="printBtn" type="submit">Print Test</button>
+          <button id="refreshPrintersBtn" type="button">Refresh Printers</button>
+        </div>
+
+        <p id="status" role="status" aria-live="polite"></p>
+      </form>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>
